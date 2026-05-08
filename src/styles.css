@@ -1,0 +1,190 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+/* ====== GENERAL TABLE ====== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* ====== HEADER ====== */
+thead {
+  position: sticky;
+  top: 0;
+  background-color: #f4f6f8;
+  z-index: 2;
+}
+
+th {
+  font-size: 14px;
+  padding: 0.5rem;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #e0e0e0;
+  border-right: 1px solid #e5e7eb;
+}
+
+/* ====== ROWS ====== */
+tr {
+  border-bottom: 1px solid #eaeaea;
+  transition: background-color 0.2s ease;
+}
+
+tr:hover {
+  background-color: #fafafa;
+}
+
+/* ====== CELLS ====== */
+td {
+  text-align: center;
+  padding: 0.5rem;
+  color: #444;
+  border-right: 1px solid #e5e7eb;
+}
+
+/* ====== INPUTS ====== */
+input,
+select {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 13px;
+  border: 1px solid #d0d5dd;
+  border-radius: 4px;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: #3b82f6;
+}
+
+/* ====== CHECKBOX ====== */
+input[type="checkbox"] {
+  width: auto;
+  cursor: pointer;
+}
+
+/* ====== COLUMN SELECTOR ====== */
+.column-selector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 10px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+}
+
+/* label */
+.column-selector label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #333;
+  cursor: pointer;
+}
+
+/* checkbox */
+.column-selector input[type="checkbox"] {
+  accent-color: #3b82f6;
+}
+
+/* ====== ACTIVE STATE ====== */
+.column-selector input[type="checkbox"]:checked + span {
+  font-weight: 500;
+}
+
+/* highlight selected */
+.column-selector label:has(input:checked) {
+  background-color: #eff6ff;
+  border-color: #3b82f6;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  th,
+  td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .column-selector {
+    gap: 8px;
+  }
+}
+
+/* ====== CELL WRAPPER ====== */
+.cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+}
+
+/* value text */
+.cell span {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+}
+/* ====== BUTTON BASE ====== */
+.cell button {
+  opacity: 0.8;
+  border: none;
+  //padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+td:hover .cell button {
+  opacity: 1;
+}
+
+/* ====== EDIT BUTTON ====== */
+.cell button:first-of-type {
+  background-color: #e5e7eb;
+  color: #333;
+}
+
+.cell button:first-of-type:hover {
+  background-color: #d1d5db;
+}
+/* Save */
+.cell button:nth-of-type(1) {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.cell button:nth-of-type(1):hover {
+  background-color: #2563eb;
+}
+
+/* Discard */
+.cell button:nth-of-type(2) {
+  background-color: #ef4444;
+  color: white;
+}
+
+.cell button:nth-of-type(2):hover {
+  background-color: #dc2626;
+}
+.cell button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cell .error {
+  color: #ef4444;
+  font-size: 11px;
+  margin-top: 2px;
+}
