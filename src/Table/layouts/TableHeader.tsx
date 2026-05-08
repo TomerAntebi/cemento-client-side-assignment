@@ -1,5 +1,5 @@
 import { ColumnDefinition } from "../types/TableTypes";
-import TableColumn from "../components/TableColum";
+import TableColumn from "../components/TableColumn";
 
 type TableHeaderProps = {
   columns: ColumnDefinition[];
