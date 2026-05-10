@@ -16,6 +16,7 @@ export default function Table({ data }: TableProps) {
     <>
       <ColumnSelector
         columns={tableData.columns}
+        visibleColumns={visibleColumns}
         onToggleColumn={toggleColumn}
       />
       {visibleColumns.length > 0 ? (

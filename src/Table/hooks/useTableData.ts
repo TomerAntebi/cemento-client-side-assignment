@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { ColumnType, ColumnDefinition } from "../TableTypes";
-import { TableDataType } from "../types/TableTypes";
+import { TableDataType, ColumnType, ColumnDefinition } from "../types/TableTypes";
 
 export default function useTableData(data: TableDataType) {
   const [tableData, setTableData] = useState(data);

@@ -2,11 +2,13 @@ import { ColumnDefinition } from "../types/TableTypes";
 
 export type ColumnSelectorProps = {
   columns: ColumnDefinition[];
+  visibleColumns: ColumnDefinition[];
   onToggleColumn: (column: ColumnDefinition) => void;
 };
 
 export default function ColumnSelector({
   columns,
+  visibleColumns,
   onToggleColumn,
 }: ColumnSelectorProps) {
   return (
@@ -17,7 +19,7 @@ export default function ColumnSelector({
           <label key={col.id}>
             <input
               type="checkbox"
-              checked={col.toggled}
+              checked={visibleColumns.some((visibleCol) => visibleCol.id === col.id)}
               onChange={() => onToggleColumn(col)}
             />
             <span>{col.title}</span>

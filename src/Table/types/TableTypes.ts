@@ -4,7 +4,6 @@ export type ColumnDefinition = {
   title: string;
   type: ColumnType;
   width?: number;
-  toggled?: boolean;
   options?: string[];
   validate?: (value: any) => string | null;
 };

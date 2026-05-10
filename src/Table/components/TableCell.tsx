@@ -1,4 +1,4 @@
-import { ColumnDefinition, ColumnType } from "../types/TableTypes";
+import { ColumnDefinition } from "../types/TableTypes";
 import useEditableCell from "../hooks/useEditableCell";
 
 export type TableCellProps = {
