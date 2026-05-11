@@ -12,8 +12,8 @@ export default function TableCell({ value, column, onChange }: TableCellProps) {
     isEditing,
     error,
     startEdit,
-    save,
-    discard,
+    saveChanges,
+    discardChanges,
     tempValue,
     handleChange,
   } = useEditableCell(value, column, onChange);
@@ -72,8 +72,8 @@ export default function TableCell({ value, column, onChange }: TableCellProps) {
 
       {isEditing && (
         <>
-          <button onClick={save}>Save</button>
-          <button onClick={discard}>Discard</button>
+          <button onClick={saveChanges}>Save</button>
+          <button onClick={discardChanges}>Discard</button>
         </>
       )}
 

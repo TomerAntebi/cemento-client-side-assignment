@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { TableDataType, ColumnType, ColumnDefinition } from "../types/TableTypes";
+import {
+  TableDataType,
+  ColumnDefinition,
+  ParsedCellValue,
+} from "../types/TableTypes";
 
 export default function useTableData(data: TableDataType) {
   const [tableData, setTableData] = useState(data);
@@ -8,22 +12,22 @@ export default function useTableData(data: TableDataType) {
   const updateCell = (
     rowId: string,
     columnId: string,
-    newValue: ColumnType
+    newValue: ParsedCellValue,
   ) => {
-    setTableData((prev) => ({
+    setTableData(prev => ({
       ...prev,
-      data: prev.data.map((row) =>
-        row.id === rowId ? { ...row, [columnId]: newValue } : row
+      data: prev.data.map(row =>
+        row.id === rowId ? { ...row, [columnId]: newValue } : row,
       ),
     }));
   };
 
   const toggleColumn = (toggledColumn: ColumnDefinition) => {
-    setVisibleColumns((prev) => {
-      const exists = prev.some((col) => col.id === toggledColumn.id);
+    setVisibleColumns(prev => {
+      const exists = prev.some(col => col.id === toggledColumn.id);
 
       if (exists) {
-        return prev.filter((col) => col.id !== toggledColumn.id);
+        return prev.filter(col => col.id !== toggledColumn.id);
       }
 
       const newColumns = [...prev];

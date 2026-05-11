@@ -1,5 +1,9 @@
 import { faker } from "@faker-js/faker";
-import { ColumnDefinition, TableDataType } from "../types/TableTypes";
+import {
+  ColumnDefinition,
+  ParsedCellValue,
+  TableDataType,
+} from "../types/TableTypes";
 
 export const columns: ColumnDefinition[] = [
   {
@@ -7,14 +11,16 @@ export const columns: ColumnDefinition[] = [
     ordinalNo: 0,
     title: "Name",
     type: "string",
-    validate: (val: any) => (!val || val.length < 2 ? "Name too short" : null),
+    validate: (val: ParsedCellValue) =>
+      typeof val === "string" && val.length < 2 ? "Name too short" : null,
   },
   {
     id: "age",
     ordinalNo: 1,
     title: "Age",
     type: "number",
-    validate: (val: any) => (val < 18 ? "Must be at least 18" : null),
+    validate: (val: ParsedCellValue) =>
+      typeof val === "number" && val < 18 ? "Must be at least 18" : null,
   },
   { id: "active", ordinalNo: 2, title: "Active", type: "boolean" },
   {
@@ -26,13 +32,15 @@ export const columns: ColumnDefinition[] = [
   },
 ];
 
+const ROLES = ["Admin", "User", "Guest"] as const;
+
 export const generateData = (count: number) => {
   return Array.from({ length: count }).map(() => ({
     id: faker.string.uuid(),
     name: faker.person.firstName(),
     age: faker.number.int({ min: 18, max: 60 }),
     active: faker.datatype.boolean(),
-    role: faker.helpers.arrayElement(["Admin", "User", "Guest"]),
+    role: ROLES[faker.number.int({ min: 0, max: ROLES.length - 1 })],
   }));
 };
 

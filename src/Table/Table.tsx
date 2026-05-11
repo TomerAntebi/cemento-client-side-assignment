@@ -20,15 +20,17 @@ export default function Table({ data }: TableProps) {
         onToggleColumn={toggleColumn}
       />
       {visibleColumns.length > 0 ? (
-        <table>
-          <TableHeader columns={visibleColumns} />
+        <div className="table-scroll">
+          <table>
+            <TableHeader columns={visibleColumns} />
 
-          <TableBody
-            rows={tableData.data}
-            columns={visibleColumns}
-            onCellChange={updateCell}
-          />
-        </table>
+            <TableBody
+              rows={tableData.data}
+              columns={visibleColumns}
+              onCellChange={updateCell}
+            />
+          </table>
+        </div>
       ) : (
         <div>No Columns Selected</div>
       )}

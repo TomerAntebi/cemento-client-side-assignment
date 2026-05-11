@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { ColumnDefinition } from "../types/TableTypes";
+import { validateCellValue } from "../utils/cellValidation";
 
 export default function useEditableCell(
   value: any,
   column: ColumnDefinition,
-  onChange: (val: any) => void
+  onChange: (val: any) => void,
 ) {
   const [isEditing, setIsEditing] = useState(false);
   const [tempValue, setTempValue] = useState(value);
@@ -15,27 +16,22 @@ export default function useEditableCell(
     setError(null);
   }, [value]);
 
-  const validate = (val: any) => {
-    if (!column.validate) return null;
-    return column.validate(val);
-  };
-
   const startEdit = () => setIsEditing(true);
 
-  const save = () => {
-    const validationError = validate(tempValue);
+  const saveChanges = () => {
+    const result = validateCellValue(column, tempValue);
 
-    if (validationError) {
-      setError(validationError);
+    if (!result.ok) {
+      setError(result.error);
       return;
     }
 
-    onChange(tempValue);
+    onChange(result.value);
     setIsEditing(false);
     setError(null);
   };
 
-  const discard = () => {
+  const discardChanges = () => {
     setTempValue(value);
     setError(null);
     setIsEditing(false);
@@ -43,14 +39,15 @@ export default function useEditableCell(
 
   const handleChange = (val: any) => {
     setTempValue(val);
+    setError(null);
   };
 
   return {
     isEditing,
     error,
     startEdit,
-    save,
-    discard,
+    saveChanges,
+    discardChanges,
     tempValue,
     handleChange,
   };

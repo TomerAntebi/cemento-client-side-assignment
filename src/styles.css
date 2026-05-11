@@ -4,17 +4,21 @@
 }
 
 /* ====== GENERAL TABLE ====== */
+.table-scroll {
+  max-height: 70vh;
+  overflow: auto;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #e5e7eb;
   border-radius: 6px;
   font-family: Arial, sans-serif;
-  overflow: hidden;
 }
 
 /* ====== HEADER ====== */
-thead {
+thead th {
   position: sticky;
   top: 0;
   background-color: #f4f6f8;

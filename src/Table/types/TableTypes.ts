@@ -1,3 +1,5 @@
+export type ParsedCellValue = string | number | boolean;
+
 export type ColumnDefinition = {
   id: string;
   ordinalNo: number;
@@ -5,7 +7,7 @@ export type ColumnDefinition = {
   type: ColumnType;
   width?: number;
   options?: string[];
-  validate?: (value: any) => string | null;
+  validate?: (value: ParsedCellValue) => string | null;
 };
 
 export type ColumnType = "string" | "number" | "boolean" | "select";

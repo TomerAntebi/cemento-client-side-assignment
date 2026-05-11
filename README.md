@@ -39,6 +39,7 @@ src/
     types/
       TableTypes.ts
     utils/
+      cellValidation.ts
       mockData.ts
 ```
 
@@ -92,7 +93,7 @@ Each column can define:
 - visual order with `ordinalNo`
 - value `type`
 - optional `options` (for select columns)
-- optional `validate` function for cell validation
+- optional `validate` function (runs after built-in type checks on save; see `Table/utils/cellValidation.ts`)
 
 ## Notes
 

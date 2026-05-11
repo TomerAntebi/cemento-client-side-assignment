@@ -1,10 +1,18 @@
-import { TableRowData, ColumnDefinition } from "../types/TableTypes";
+import {
+  TableRowData,
+  ColumnDefinition,
+  ParsedCellValue,
+} from "../types/TableTypes";
 import TableCell from "./TableCell";
 
 export type TableRowProps = {
   row: TableRowData;
   columns: ColumnDefinition[];
-  onCellChange: (rowId: string, columnId: string, newValue: any) => void;
+  onCellChange: (
+    rowId: string,
+    columnId: string,
+    newValue: ParsedCellValue,
+  ) => void;
 };
 
 export default function TableRow({

@@ -1,10 +1,18 @@
-import { TableRowData, ColumnDefinition } from "../types/TableTypes";
+import {
+  TableRowData,
+  ColumnDefinition,
+  ParsedCellValue,
+} from "../types/TableTypes";
 import TableRow from "../components/TableRow";
 
 export type TableBodyProps = {
   rows: TableRowData[];
   columns: ColumnDefinition[];
-  onCellChange: (rowId: string, columnId: string, newValue: any) => void;
+  onCellChange: (
+    rowId: string,
+    columnId: string,
+    newValue: ParsedCellValue,
+  ) => void;
 };
 
 export default function TableBody({
@@ -14,7 +22,7 @@ export default function TableBody({
 }: TableBodyProps) {
   return (
     <tbody>
-      {rows.map((row) => (
+      {rows.map(row => (
         <TableRow
           key={row.id}
           row={row}
